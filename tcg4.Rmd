@@ -1,0 +1,21 @@
+```{r, message = F}
+library(tidyverse) # ggplot, dplyr, tidyr, readr, purrr, tibble, stringr, forcats
+library(rvest) # interacting with html and webcontent
+library(glue) # used to combine strings in clever ways
+library(dplyr)
+```
+
+## Data taken from 
+
+We want to source NFL positional salaries to match the 
+[538 article](https://fivethirtyeight.com/features/running-backs-are-finally-getting-paid-what-theyre-worth/).
+
+We dont have access to NFL salaries from ESPN, so we have to find it manually at sportrac.
+
+```{r}
+url <- "https://www.spotrac.com/nfl/positional/2018/quarterback/"
+read_html(url) %>% 
+  html_nodes("table") %>% 
+  html_table()
+  
+```
